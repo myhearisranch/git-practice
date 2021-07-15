@@ -1,0 +1,33 @@
+.midasi{
+    text-align: center;
+       }
+    body {background-image: url("frame-4822807_1280.png"); 
+        background-position: 40% 32% ;
+        margin-top: 100px;
+     
+      }
+
+.setumei{
+    text-align: center;
+    margin-top: 50px;
+}
+.naiyou{
+    margin-top: 100px;
+    text-align: center;
+}
+.person{
+    margin-top: 100px;
+    text-align: center;
+    
+
+}
+.person img{
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    width: 200px;
+
+    }
+footer{
+    text-align: right;
+}

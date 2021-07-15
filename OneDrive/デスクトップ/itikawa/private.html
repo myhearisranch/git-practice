@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="css/private.css">
+    <title>作者の日常</title>
+</head>
+
+<body>
+    <header>
+        <h1>インスタグラム風の投稿</h1>
+    </header>
+    <div class="container">
+        <div id="img_unit">
+
+        </div>
+    </div>
+    <script>
+        alert('菴墓腐縺薙ｌ縺瑚ｪｭ繧√ｋ?');
+        var ajax=new XMLHttpRequest();
+        ajax.open('GET','https://h2o-space.com/htmlbook/images.php');
+        ajax.responseType='json';
+        ajax.send(null);
+
+        ajax.onreadystatechange=function(){
+            if(ajax.readyState === XMLHttpRequest.DONE && ajax.status === 200)
+            {
+                for (var i=0; i<this.response.length; i++){
+                    
+                    var data = this.response[i];
+                    var img =document.createElement('img');
+                    img.setAttribute('src',data.path);
+
+                    var caption=document.createElement('div');
+                    caption.classList='inner';
+                    caption.innerHTML='<p>'+data.caption+'<span>'+data.name+'</span></p>';
+
+                    var div=document.createElement('div');
+                    div.appendChild(img);
+                    div.appendChild(caption);
+
+                    var div=document.createElement('div');
+                    div.className='photo';
+                    div.appendChild(img);
+                    div.appendChild(caption);
+
+                    document.getElementById('img_unit').appendChild(div);
+                }
+            }
+        };
+
+    </script>
+    <!-- <script>
+
+        //XMLHttpRequest:Ajax通信を行うオブジェクト
+        var ajax = new XMLHttpRequest();
+
+        //open:Ajax通信を行うアドレス先を記述する
+        ajax.open('GET', 'https://h2o-space.com/htmlbook/images.php');
+
+        //jsonデータを指定する
+        ajax.responseType = 'json';
+
+        //上のhttps://というファイルに情報を送る(今回は特にないのでnull)
+        ajax.send(null);
+        ajax.onreadystatechange = function () {
+           
+            //通信が終わったかどうかアラートで確認する
+            //ajax.status===200:通信が正常に終了した（通信の状況は数値で表される）
+            //XMLHttpRequwst DONE:通信が終了する
+            if (ajax.readyState === XMLHttpsRequest.DONE && ajax.status === 200){
+                for (var i=0; i<this.response.length; i++){
+                    alert(this.response[i].path);
+                }
+            }
+        };
+
+    </script> -->
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/timer.css">
+    <title>おまけ</title>
+</head>
+
+<body>
+    <div class="container">
+        <p id="timer">00:00:00</p>
+
+
+        <div>
+            <button id="start_stop" class="btn btn-lg btn-primary">START</button>
+        </div>
+    </div>
+    <script>
+        var start;
+        var timer_id;
+
+        document.getElementById('start_stop').addEventListener('click', function () {
+            if (this.innerHTML === 'START') {
+                start = new Date();//startボタンがクリックされた時間を代入する
+                timer_id=setInterval(goTimer,10);
+
+               // setInterval(goTimer, 10); //gotimerというファンクションを呼出す
+                //stopボタンにする
+                this.innerHTML = 'stop';
+                this.classList.remove('btn-primary');
+                this.classList.add('btn-danger');
+            }else{
+                clearInterval(timer_id);
+                //STARTボタンに戻す
+                this.innerHTML='START';
+                this.classList.remove('btn-danger');
+                this.classList.add('btn-primary');
+            }
+
+        });
+        var addZero = function (value) {
+            if (value < 10) {
+                value = '0' + value;
+            }
+            return value;
+
+        }
+        var goTimer = function () {
+            var now = new Date();//今、現在の時刻を取得する
+
+            var milli = now.getTime() - start.getTime();
+            var seconds = Math.floor(milli / 1000);
+            var minutes = Math.floor(seconds / 60);
+            var hours = Math.floor(minutes / 60);
+
+            seconds = seconds - minutes * 60;
+            minutes = minutes - hours * 60;
+
+            hours = addZero(hours);
+            minutes = addZero(minutes);
+            seconds = addZero(seconds);
+
+            document.getElementById('timer').innerHTML = hours + ':' + minutes + ':' + seconds;
+
+        }
+       //同じような処理を複数回行う= 関数を定義する(ひとまとめにする)
+        //ゼロを追加する
+        //var addzero=function(value){ //var addzero=function()でaddzeroがファンクションになる。　()の中はaddzeroという動作に対して細かな情報を補足情報として伝える（今回は動作の対象の情報が足りていないのでそれをパラメータで補う）
+
+          //      if (value < 10){
+            //value='0'+value;
+              //   }
+                // return value;　//変数に代入させるとその変数の中にファンクションで行った処理を代入する事が出来る
+            //}
+       // document.getElementById('start_stop').addEventListener('click',//クリックした時の処理を記述する　addEventListenerの中にはイベントとそのイベントによる処理を考える
+        //function(){
+        //    var now=new Date();
+        //var seconds=now.getSeconds(); //秒を取得してsecondsに代入する
+        //seconds=addzero(seconds);
+
+        //var minutes=now.getMinutes();//分を取得してminutesに代入
+        //minutes=addzero(minutes);
+
+        //var hours=now.getHours(); //時を取得してhoursに代入する
+        //hours=addzero(hours);
+
+        //document.getElementById('timer').innerHTML=hours+':'+minutes+':'+seconds;
+
+        //});
+
+       // document.getElementById('timer').innerHTML='00:00:01';　timerというid属性によって、要素を取得し、innerHTML=によって、書き換える
+
+    </script>
+</body>
+
+</html>
